@@ -2,6 +2,8 @@
 package com.yq.repository;
 
 import com.yq.domain.Movie;
+import com.yq.domain.Person;
+import org.neo4j.ogm.cypher.Filter;
 import org.neo4j.ogm.session.Session;
 import org.neo4j.ogm.session.SessionFactory;
 import org.neo4j.ogm.transaction.Transaction;
@@ -9,9 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static org.neo4j.ogm.cypher.ComparisonOperator.EQUALS;
 
 /**
  * Simple to Introduction
@@ -33,7 +38,6 @@ public class CustomizedRepositoryImpl <T> implements CustomizedRepository <T>{
 
     @Override
     public Iterable<T> findByNodeId(Class<T> objectType, Integer id) {
-
         Session session = sessionFactory.openSession();
         Iterable<T> result = null;
         try ( Transaction transaction = session.beginTransaction()) {
@@ -50,5 +54,21 @@ public class CustomizedRepositoryImpl <T> implements CustomizedRepository <T>{
         }
 
         return result;
+    }
+    /*
+     * 放在service中，一直报无法找到transaction， 只有在这里才可以works well
+     */
+    public Collection<Person> findByNameFilter(String firstName) {
+        Session session = sessionFactory.openSession();
+        Collection<Person> persons = null;
+        try ( Transaction transaction = session.beginTransaction()) {
+            persons =
+                    session.loadAll(Person.class, new Filter("firstName", EQUALS, firstName));
+            transaction.commit();
+        } catch (Exception e) {
+            throw  e;
+        }
+
+        return persons;
     }
 }

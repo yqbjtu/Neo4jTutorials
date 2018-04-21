@@ -5,6 +5,7 @@ import com.yq.domain.Movie;
 import com.yq.domain.Person;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -14,5 +15,6 @@ import java.util.List;
 public interface CustomizedRepository <T>{
     List<T>  someCustomMethod();
     Iterable<T>  findByNodeId(Class<T> objectType, Integer id);
+    Collection<Person> findByNameFilter(String firstName);
 
 }
