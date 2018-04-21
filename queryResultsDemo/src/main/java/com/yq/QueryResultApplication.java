@@ -22,12 +22,12 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableNeo4jRepositories("com.yq.repository")
 @EntityScan(basePackages = "com.yq.domain")
 @EnableTransactionManagement
-public class Application {
+public class QueryResultApplication {
 
-	private final static Logger log = LoggerFactory.getLogger(Application.class);
+	private final static Logger log = LoggerFactory.getLogger(QueryResultApplication.class);
 
 	public static void main(String[] args) throws Exception {
-		SpringApplication.run(Application.class, args);
+		SpringApplication.run(QueryResultApplication.class, args);
 	}
 
 
