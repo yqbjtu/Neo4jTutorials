@@ -17,6 +17,7 @@ import java.util.Map;
  * @version 2018/4/6 21:42
  */
 @lombok.Data
+@NoArgsConstructor
 //Entities handled by the OGM must have one empty public constructor to allow the library to construct the objects.
 @NodeEntity
 public class Person{
@@ -34,8 +35,7 @@ public class Person{
         this.lastName = lastName;
         this.height = height;
     }
-    public Person () {
-    }
+
     @JsonIgnoreProperties("models")
     @Relationship(type = "ACTED_IN", direction = Relationship.OUTGOING)
     private List<Movie> aMovies;

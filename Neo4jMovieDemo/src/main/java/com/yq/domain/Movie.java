@@ -15,6 +15,7 @@ import java.util.Date;
  */
 
 @lombok.Data
+@NoArgsConstructor
 @NodeEntity
 public class Movie{
     @Id
@@ -29,7 +30,5 @@ public class Movie{
         this.title = title;
         this.category = category;
         this.revenue = revenue;
-    }
-    public Movie () {
     }
 }

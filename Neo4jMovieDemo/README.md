@@ -9,6 +9,7 @@ http://127.0.0.1:8080/movie/all
 
 http://127.0.0.1:8080/person/likeName?name=ChengLong*
 http://127.0.0.1:8080/person/findById?id=
+http://127.0.0.1:8080/person/findActorByMovieTitle?page=0&size=10&title=建国大业A
 
 
 http://127.0.0.1:8080/movie/findByReveueGT?revenue=5000
