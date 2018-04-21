@@ -24,7 +24,6 @@ public class Movie{
     private String category;
     private Integer revenue;
 
-
     public Movie (String title, String category, int revenue) {
         this.title = title;
         this.category = category;

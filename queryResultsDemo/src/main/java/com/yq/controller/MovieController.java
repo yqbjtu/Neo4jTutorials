@@ -2,15 +2,13 @@ package com.yq.controller;
 
 import com.yq.domain.Movie;
 ;
+import com.yq.domain.MovieTitleAndRevenue;
 import com.yq.domain.Person;
 import com.yq.domain.MovieData;
-import com.yq.repository.CustomizedMovieRepositoryImpl;
 import com.yq.repository.MovieRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -57,5 +55,14 @@ public class MovieController {
         MovieData data = movieRepository.getMovieData(title);
         log.info("data:" + data.toString());
         return data==null ? "no record" : data.toString();
+    }
+
+    @GetMapping("/myFindByTitle")
+    public MovieTitleAndRevenue myfindByTitle(@RequestParam(value = "page", defaultValue = "0") Integer page,
+                                            @RequestParam(value = "size", defaultValue = "15") Integer size,
+                                            @RequestParam String title) {
+        MovieTitleAndRevenue data = movieRepository.findByTitle(title);
+        log.info("data:" + data.toString());
+        return data;
     }
 }
