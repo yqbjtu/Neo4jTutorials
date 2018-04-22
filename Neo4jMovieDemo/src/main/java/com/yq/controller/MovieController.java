@@ -44,4 +44,15 @@ public class MovieController {
     public Iterable<Person> customizedFindPersonByName(@RequestParam String name) {
         return movieRepository.findPersonMethod(name);
     }
+
+    @GetMapping("/init")
+    public Iterable<Movie> init() {
+        Movie oneMovie = new Movie("OneA" , "history", 5000);
+        Movie twoMovie = new Movie("TwoA" , "science", 8000);
+        Movie threeMovie = new Movie("ThreeA" , "motion", 9000);
+        movieRepository.save(oneMovie);
+        movieRepository.save(twoMovie);
+        movieRepository.save(threeMovie);
+        return movieRepository.findAll();
+    }
 }
