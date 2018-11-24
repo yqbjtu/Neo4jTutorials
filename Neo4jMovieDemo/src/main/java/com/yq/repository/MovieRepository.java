@@ -20,8 +20,4 @@ public interface MovieRepository extends Neo4jRepository<Movie, Long> , Customiz
 	Movie findByTitle(@Param("title") String title);
 
     Collection<Movie> findByRevenueGreaterThan(int revenue);
-
-
-
-
 }
