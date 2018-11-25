@@ -30,7 +30,6 @@ public class CustomizedRepositoryImpl <T> implements CustomizedRepository <T>{
     @Autowired
     protected SessionFactory sessionFactory;
 
-
     @Override
     public List<T> someCustomMethod() {
         return null;
@@ -55,9 +54,11 @@ public class CustomizedRepositoryImpl <T> implements CustomizedRepository <T>{
 
         return result;
     }
+
     /*
      * 放在service中，一直报无法找到transaction， 只有在这里才可以works well
      */
+    @Override
     public Collection<Person> findByNameFilter(String firstName) {
         Session session = sessionFactory.openSession();
         Collection<Person> persons = null;
